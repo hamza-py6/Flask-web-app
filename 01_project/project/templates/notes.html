@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %} notes {% endblock %}
+
+{% block content %}
+    <h1 align="center">Notes</h1>
+    <ul id="notes">
+        {% for note in user.notes %}
+        <li>
+            {{ note.data }}
+        </li>
+        {% if note.pic %}
+        <li>
+            <img src="{{ url_for('static',filename='images/' + note.pic) }}" width="50" height="50" >
+        </li>
+        {% endif %}
+        <li>
+            {{ note.pic }}
+        </li>
+        
+        <!--<button type="button" ></button>-->
+        <a href="/delete/{{ note.id }}">Delete </a>
+        {% endfor %}
+    </ul>
+    <form method="post" action="#" enctype="multipart/form-data">
+        <input type="file" id="myFile" name="pic">
+        <!--<input type="submit">-->
+      
+        <textarea id="note" name="note"></textarea>
+        <button type="submit">Submit</button>
+
+    <!--<input type = "file" name = "file" />
+        <input type = "submit" value = "Submit" />-->
+    
+    </form>
+{% endblock %}

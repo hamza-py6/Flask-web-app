@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} sign-up {% endblock %}
+
+{% block content %}
+
+    <form method="post" action="#">
+        <label>email</label>
+        <input type="text" id="email" name="email">
+        <br>
+        <label>First name</label>
+        <input type="text" id="first_name" name="first_name">
+        <br>
+        <label>password</label>
+        <input type="password" id="passwd1" name="passwd1">
+        <br>
+        <label>reenter password</label>
+        <input type="password" id="passwd2" name="passwd2">
+        
+        <button type="submit">Submit</button>
+        
+    </form>
+{% endblock %}
