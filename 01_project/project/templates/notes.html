@@ -4,33 +4,54 @@
 
 {% block content %}
     <h1 align="center">Notes</h1>
-    <ul id="notes">
-        {% for note in user.notes %}
-        <li>
-            {{ note.data }}
-        </li>
-        {% if note.pic %}
-        <li>
-            <img src="{{ url_for('static',filename='images/' + note.pic) }}" width="50" height="50" >
-        </li>
-        {% endif %}
-        <li>
-            {{ note.pic }}
-        </li>
-        
-        <!--<button type="button" ></button>-->
-        <a href="/delete/{{ note.id }}">Delete </a>
-        {% endfor %}
-    </ul>
-    <form method="post" action="#" enctype="multipart/form-data">
-        <input type="file" id="myFile" name="pic">
-        <!--<input type="submit">-->
-      
-        <textarea id="note" name="note"></textarea>
-        <button type="submit">Submit</button>
+    <section id="main">
+        <!-- add note section  -->
+        <div class="pos-f-t">
+            <nav class="navbar sticky-top navbar-dark">
+                <button class="btn btn-sm btn-outline-info ml-auto" type="button" 
+                        data-toggle="collapse" data-target="#navbarToggleExternalContent" 
+                        aria-controls="navbarToggleExternalContent" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    Add Note
+                </button>
+            </nav>
 
-    <!--<input type = "file" name = "file" />
-        <input type = "submit" value = "Submit" />-->
-    
-    </form>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="container-fluid">
+                    <form method="post" action="#" class="row" enctype="multipart/form-data">
+                        <div class="col-lg-6">
+                            <div class="button-wrap">
+                                <button class="btn btn-sm btn-dark">Add Photo</button>
+                                <input type="file" id="myFile" name="pic">
+                            </div>
+                            <textarea id="note" name="note"></textarea>
+                            <button type="submit" class="btn btn-sm btn-outline-dark">Add Note</button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        
+        </div>
+        <!-- show all the notes section -->
+        <div class="container-fluid"> 
+            <div class="row">
+                {% for note in user.notes %}
+                    <div class="col-lg-4 col-md-6" id="notes">
+                        <div class="card">
+                            {% if note.pic %}
+                            <div>
+                                <img class="card-img-top" src="{{ url_for('static',filename='images/' + note.pic) }}" alt="Card image cap">
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title"> {{ note.data }} </h5>
+                                <p class="card-text"> {{ note.pic }} </p>
+                                <a href="#" class="btn btn-sm btn-outline-dark" href="/delete/{{ note.id }}">Delete </a>
+                            </div>
+                        </div>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}

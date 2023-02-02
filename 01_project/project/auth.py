@@ -23,18 +23,19 @@ def sign_up():
         #
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('user alredy exict')
+            flash('user alredy exict',category='error')
         elif len(email) < 3:
-            flash('email must be more than 4 characters')
+            flash('email must be more than 4 characters',category='error')
         elif len(password1) < 3:
-            flash ('password must be more than 4 characters')
+            flash ('password must be more than 4 characters',category='error')
         elif password1 != password2:
-            flash('password don\'t match ')
+            flash('password don\'t match ',category='error')
         else:
             new_user = User(email=email,first_name=first_name,password = generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user,remember=True)
+            flash('Account created!', category='info')
             return redirect(url_for('views.notes'))
 
     return render_template('sign_up.html',user=current_user)
@@ -51,15 +52,15 @@ def login():
         #AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         if user :
             if check_password_hash(user.password,password):
-                flash('logged in successfully !')
+                flash('logged in successfully !',category='info')
                 login_user(user,remember=True)
                 return redirect(url_for('views.notes'))
             else:
-                flash('incorect password try again')
+                flash('incorect password try again',category='error')
         else:
-            flash('email does not exist')
+            flash('email does not exist',category='error')
     
-    return render_template('login.html',user=current_user)
+    return render_template('login.html',user = current_user)
 
 
 @auth.route('/logout')

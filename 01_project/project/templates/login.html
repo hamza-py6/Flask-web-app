@@ -2,14 +2,32 @@
 
 {% block title %}login{% endblock %}
 {% block content %}
-    <form method="post" action="#">
-        <label>email</label>
-        <input type="text" id="email" name="email">
-        <br>
-        <label>password</label>
-        <input type="password" id="passwd1" name="passwd1">
+<div class="container-fluid text-center"  data-new-gr-c-s-check-loaded="14.1094.0" data-gr-ext-installed="">
+
+    <form class="form-signin" method="post" action="#">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <div class="all-inputs">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+        </div>
+        <div class="all-inputs">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword"  name="passwd1" class="form-control" placeholder="Password" required="">
+        </div>
+        <div class="checkbox mb-3 all-inputs">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="btn btn-sm btn-dark btn-block" type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-muted">© 2022-2023</p>
         
-        <button type="submit">Submit</button>
+          <!-- <label>email</label>
+        <input type="text" id="email" name="email"> -->
+        <!-- <label>password</label>
+        <input type="password" id="passwd1" name="passwd1"> -->
+        <!-- <button type="submit" class="btn btn-sm btn-outline-dark">Submit</button> -->
         
     </form>
+</div>
 {% endblock %}
